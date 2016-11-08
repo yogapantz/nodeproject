@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="myApp">
+<head>
+  <title>Project A</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  
+</head>
+<body>
+
+<div class ="container" ng-controller="AppCtrl">
+    <div class ="page-header">
+        <h1>Receptsamling</h1>
+    </div>
+    <table class ="table">
+        <thead>
+            <tr>
+                <th>Name:</th>
+                <th>Level of difficulty</th>
+                <th>Rating</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat ="recipe in recipes">
+                <td>{{recipe.name}}</td>
+                <td>{{recipe.lod}}</td>
+                <td>{{recipe.rating}}</td>
+            </tr>
+            
+        </tbody>
+    </table>
+</div>
+ <script src="js/angular.min.js"></script>
+ <script src="js/bootstrap.min.js"></script>
+ <script src="js/jquery.min.js"></script>
+ <script src="js/app.js"></script>
+ <script src="controllers/controller.js"></script>
+</body>
+</html>
