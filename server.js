@@ -20,7 +20,8 @@ app.post('/addrecipe', function(req, res){
     var myobj = { name: req.body.name, lod: req.body.lod, rating: req.body.rating };
     db.recipe.insert(myobj, function(err, res) {
         if (err) throw err;
-        console.log("1 record inserted");
+         res.redirect('/');
+        
     });
 });
 
