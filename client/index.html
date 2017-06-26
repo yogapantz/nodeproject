@@ -10,29 +10,10 @@
 </head>
 <body>
 
-<div class ="container" ng-controller="AppCtrl">
-    <div class ="page-header">
-        <h1>Receptsamling</h1>
-    </div>
-    <table class ="table">
-        <thead>
-            <tr>
-                <th>Name:</th>
-                <th>Level of difficulty</th>
-                <th>Rating</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr ng-repeat ="recipe in recipes">
-                <td>{{recipe.name}}</td>
-                <td>{{recipe.lod}}</td>
-                <td>{{recipe.rating}}</td>
-            </tr>
-            
-        </tbody>
-    </table>
-</div>
+    <div ng-view></div>
+    
  <script src="js/angular.min.js"></script>
+ <script src="js/angular-route.js"></script>
  <script src="js/bootstrap.min.js"></script>
  <script src="js/jquery.min.js"></script>
  <script src="js/app.js"></script>

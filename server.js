@@ -2,26 +2,24 @@ var mongojs = require('mongojs');
 var express = require('express');
 var bodyParser = require('body-parser');
 var app = express();
-var db = mongojs('recipe' , ['recipe']);
+var db = mongojs('Cooking' , ['recipes']);
 var PORT = 3000;
 app.use(express.static(__dirname + "/client"));
 app.use(bodyParser.urlencoded({ extended: true })); 
-
+app.use(bodyParser.json()); // for parsing application/json
 
 app.get('/recipes', function(req, res){
-  console.log('GET request recived');
-   db.recipe.find(function(err, docs){
-    console.log(docs);
+   db.recipes.find(function(err, docs){
     res.json(docs);
    });
 });
 
 app.post('/addrecipe', function(req, res){
     var myobj = { name: req.body.name, lod: req.body.lod, rating: req.body.rating };
-    db.recipe.insert(myobj, function(err, res) {
+
+    db.recipes.insert(myobj, function(err, docs) {
         if (err) throw err;
-         res.redirect('/');
-        
+        res.json(docs);
     });
 });
 

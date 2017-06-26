@@ -1,0 +1,22 @@
+<div class ="container">
+    <div class ="page-header">
+        <h1>Receptsamling</h1>
+    </div>
+    <table class ="table">
+        <thead>
+            <tr>
+                <th>Name:</th>
+                <th>Level of difficulty</th>
+                <th>Rating</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat ="recipe in recipes">
+                <td>{{recipe.name}}</td>
+                <td>{{recipe.lod}}</td>
+                <td>{{recipe.rating}}</td>
+            </tr>
+        </tbody>
+    </table>
+    <a href="/#/addrecipe" class="btn btn-primary"> Add Recipe </a>
+</div>
