@@ -10,16 +10,13 @@ myApp.config(function($routeProvider) {
             templateUrl : 'views/home.html',
             controller  : 'AppCtrl'
         })
-
-        // route for the about page
-        .when('/addrecipe', {
-            templateUrl : 'views/addrecipe.html',
-            controller  : 'AddCtrl'
+        .when('/recipe', {
+            templateUrl : 'views/recipe.html',
+            controller : 'RecipeCtrl'
         });
 });
 
 myApp.controller('AppCtrl', ['$scope', '$http', function($scope, $http) {
-    console.log("Hello world from controller");
     $http({
         method: 'GET',
         url: '/recipes'
@@ -29,19 +26,40 @@ myApp.controller('AppCtrl', ['$scope', '$http', function($scope, $http) {
         console.log('Error');
     });
     
+    //Fix this ugly code later
+    $scope.showAdd = function() {
+        $scope.bAddRecipe = $scope.bAddRecipe ? false : true;
+    };
     
-}]);
-
-myApp.controller('AddCtrl', ['$scope','$http', function($scope, $http) {
     $scope.sub = function() {
         $http({
             method: 'POST',
             url: '/addrecipe',
             data: $scope.formData
         }).then(function successCallback(response) {
-            window.location.href = "/";
+            $scope.showAdd();
+            $http({
+            method: 'GET',
+            url: '/recipes'
+                }).then(function successCallback(response) {
+                    $scope.recipes = response.data;
+                }, function errorCallback(response) {
+                    console.log('Error');
+                });
         }, function errorCallback(response) {
             $scope.messae = "Error in posted data";
         });
     };
 }]);
+
+
+myApp.controller('RecipeCtrl', function($scope, $http, $routeParams, $location) {
+    $http({
+    method: 'GET',
+    url: '/getRecipe?id='+$routeParams.id
+        }).then(function successCallback(response) {
+            console.log(response);
+            $scope.recipe = response.data[0];
+        }, function errorCallback(response) {
+        });
+});

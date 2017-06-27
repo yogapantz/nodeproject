@@ -4,6 +4,7 @@ var bodyParser = require('body-parser');
 var app = express();
 var db = mongojs('Cooking' , ['recipes']);
 var PORT = 3000;
+var ObjectId = mongojs.ObjectId;
 app.use(express.static(__dirname + "/client"));
 app.use(bodyParser.urlencoded({ extended: true })); 
 app.use(bodyParser.json()); // for parsing application/json
@@ -12,6 +13,15 @@ app.get('/recipes', function(req, res){
    db.recipes.find(function(err, docs){
     res.json(docs);
    });
+});
+
+app.get('/getRecipe', function(req, res){
+    
+    var objectId = {_id: ObjectId(req.query.id)};
+    
+    db.recipes.find(objectId, function(err, docs) {
+        res.json(docs);
+    });
 });
 
 app.post('/addrecipe', function(req, res){

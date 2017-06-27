@@ -1,6 +1,11 @@
 <div class ="container">
     <div class ="page-header">
         <h1>Receptsamling</h1>
+        <h1 style="padding-bottom: 25px">
+            <div ng-click="showAdd()" class="btn btn-primary" ng-hide="bAddRecipe" style="float: right">
+                Edit
+            </div>
+        </h1>
     </div>
     <table class ="table">
         <thead>
@@ -12,11 +17,18 @@
         </thead>
         <tbody>
             <tr ng-repeat ="recipe in recipes">
-                <td>{{recipe.name}}</td>
+                <td>
+                    <a href="#/recipe?id={{recipe._id}}"> {{recipe.name}} </a>
+                </td>
                 <td>{{recipe.lod}}</td>
                 <td>{{recipe.rating}}</td>
             </tr>
         </tbody>
     </table>
-    <a href="/#/addrecipe" class="btn btn-primary"> Add Recipe </a>
+    <form ng-submit="sub()" ng-show="bAddRecipe">
+        <input type="text" ng-model="formData.name" placeholder="Enter name" />
+        <input type="text" ng-model="formData.lod" placeholder="Enter level of difficulty" />
+        <input type="text" ng-model="formData.rating" placeholder="Enter rating" />
+        <button type="submit" class="btn btn-primary">Add Recipe</button>
+    </form>
 </div>

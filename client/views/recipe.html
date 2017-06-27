@@ -1,0 +1,41 @@
+<div class ="container">
+    <div class ="page-header">
+        <h1>
+            <center>
+                {{recipe.name}}
+            </center>
+        </h1>
+        Rating: {{recipe.rating}}
+        <right style="float: right"> Difficulty: {{recipe.lod}} </right>
+    </div>
+    <!-- Ingredients -->
+    <table class ="table">
+        <thead>
+            <tr>
+                <th>Name:</th>
+                <th>Quantity</th>
+                <th>Rating</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat ="ingredient in ingredients">
+                <td>{{ingredient.name}}</td>
+                <td>{{ingredient.quantity}}</td>
+                <td>{{ingredient.comment}}</td>
+            </tr>
+        </tbody>
+    </table>
+    <!-- Instructions -->
+    <table class ="table">
+        <thead>
+            <tr>
+                <th>Instruction</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat ="instruction in instructions">
+                <td>{{instruction.text}}</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
